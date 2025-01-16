@@ -1,9 +1,11 @@
 #!/bin/bash
-notes=notes.txt
+notes=notes.txt # sets notes variable
+
 case $1 in
-    list) 
+    list)
         # list notes
-        cat $notes;;
+        cat $notes
+        exit 0;;
 
     add)
         # add notes
@@ -13,6 +15,7 @@ case $1 in
             note="$timestamp $message"
             echo $note >> $notes
             echo "Note added successfully"
+            exit 0
         fi;;
 
     search)
@@ -20,10 +23,11 @@ case $1 in
         search=$2
         if [ "search" != "" ]; then
             grep $search $notes
+            exit 0
         fi;;
 
     *)
         # invalid option
         echo "Error: Invalid option"
-        exit;;
+        exit 1;;
 esac
